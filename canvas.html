@@ -112,5 +112,11 @@
            &nbsp&nbsp to change color on mobile, you can enter b g r or y in the input box
        </p>
 </body>
-
+<script>
+$("#p_color").on('input', function(){
+	pcolor = $(this).val();
+	console.log(pcolor)
+	$("#p_color").blur();
+});
+</script>
 </html>
