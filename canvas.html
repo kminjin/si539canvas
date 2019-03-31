@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		canvas{
+			border: 1px solid black;
+      cursor: crosshair;
+      border-radius: 10px;
+		}
+	</style>
+
+</head>
+<body>
+	<canvas id="canvas" width="800" height="500">Blank canvas for drawing art</canvas>
+
+<script>
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext('2d');
+	var x = 250;
+	var y = 250;
+	var psize = 10;
+	var pcolor = "red";
+	var w = window.innerWidth * 0.8;
+	var h = window.innerHeight * 0.8;
+	window.addEventListener('load', function() {
+	init();
+	})
+	function init() {
+		canvas.width = w;
+    canvas.height = h;
+	};
+ 	function newCanvas() {
+ 	    location.reload();
+        }
+	function draw(){
+		ctx.beginPath();
+		ctx.arc(x,y,psize,0,2*Math.PI);
+    ctx.fillStyle = pcolor;
+		ctx.fill();
+	}
+	window.addEventListener('mousemove', function (e) {
+		x = e.pageX;
+		y = e.pageY;
+		draw()
+	})
+// gets and assings the x and y position of the touch point to variables when a point on the screen detects touch
+	window.addEventListener('touchmove', function(e){
+ 		x = e.touches[0].pageX;
+  	y = e.touches[0].pageY;
+  	draw();
+	});
+// invokes the resizeCnavas function that reloads the page when the screen orientation changes
+	window.addEventListener("orientationchange", function() {
+		newCanvas();
+	});
+// invokes the resizeCanvas function again when it detects a change in the screen size
+	window.addEventListener('resize', function() {
+		newCanvas();
+	});
+// changes pen color or pen size when the specifc keys are pressed
+	window.addEventListener('keyup', function (e) {
+	console.log(e.keyCode);
+	if (e.keyCode == 66){
+		pcolor = "blue"
+	}
+	else if (e.keyCode == 89){
+		pcolor = "yellow"
+	}
+	else if (e.keyCode == 71){
+		pcolor = "green"
+	}
+	else if (e.keyCode == 82){
+		pcolor = "red"
+	}
+	else if (e.keyCode == 38){
+		if (psize < 50){
+			psize = psize +2
+		}
+	}
+	else if (e.keyCode == 40){
+		if (psize > 2){
+			psize = psize - 2
+		}
+	}
+	else if(e.keyCode == 32){
+		ctx.clearRect(0, 0, w, h);
+	}
+	draw();
+	})
+</script>
+
+<!-- // adds a button for picking pen color -->
+<div>
+    <input type="color" id="p_color" name="p_color" value="#ff0000">
+    <input type="color" id="p_color" name="p_color" value="#0000ff">
+    <input type="color" id="p_color" name="p_color" value="#006400">
+    <input type="color" id="p_color" name="p_color" value="#ffff00">
+<!--     <label for="pencolor">Pen Color</label> -->
+</div>
+       <p> Possible controls are:<br/>
+           &nbsp&nbsp press "b" key - change pen color to blue<br/>
+           &nbsp&nbsp press "g" key - change pen color to green<br/>
+           &nbsp&nbsp press "r" key - change pen color to red<br/>
+           &nbsp&nbsp press "y" key - change pen color to yellow<br/>
+           &nbsp&nbsp press up arrow key - makes pen size larger<br/>
+           &nbsp&nbsp press down arrow key - makes pen size smaller<br/>
+           &nbsp&nbsp press space bar key - clear the canvas
+       </p>
+   </body>
+</body>
+
+<!-- changes pen color to color from color picker when color is selected. It then removes focus on the button after the input is submitted -->
+<script>
+$("#p_color").on('input', function(){
+	pcolor = $(this).val();
+	console.log(pcolor)
+	$("#p_color").blur();
+});
+</script>
+</html>
