@@ -11,12 +11,12 @@
       cursor: crosshair;
       border-radius: 10px;
 		}
-	</style>
+
+	 </style>
 
 </head>
 <body>
 	<canvas id="canvas" width="800" height="500">Blank canvas for drawing art</canvas>
-
 <script>
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext('2d');
@@ -47,21 +47,17 @@
 		y = e.pageY;
 		draw()
 	})
-// gets and assings the x and y position of the touch point to variables when a point on the screen detects touch
 	window.addEventListener('touchmove', function(e){
  		x = e.touches[0].pageX;
   	y = e.touches[0].pageY;
   	draw();
 	});
-// invokes the resizeCnavas function that reloads the page when the screen orientation changes
 	window.addEventListener("orientationchange", function() {
 		newCanvas();
 	});
-// invokes the resizeCanvas function again when it detects a change in the screen size
 	window.addEventListener('resize', function() {
 		newCanvas();
 	});
-// changes pen color or pen size when the specifc keys are pressed
 	window.addEventListener('keyup', function (e) {
 	console.log(e.keyCode);
 	if (e.keyCode == 66){
@@ -91,15 +87,11 @@
 	}
 	draw();
 	})
+
 </script>
 
-<!-- // adds a button for picking pen color -->
 <div>
     <input type="color" id="p_color" name="p_color" value="#ff0000">
-    <input type="color" id="p_color" name="p_color" value="#0000ff">
-    <input type="color" id="p_color" name="p_color" value="#006400">
-    <input type="color" id="p_color" name="p_color" value="#ffff00">
-<!--     <label for="pencolor">Pen Color</label> -->
 </div>
        <p> Possible controls are:<br/>
            &nbsp&nbsp press "b" key - change pen color to blue<br/>
@@ -110,10 +102,7 @@
            &nbsp&nbsp press down arrow key - makes pen size smaller<br/>
            &nbsp&nbsp press space bar key - clear the canvas
        </p>
-   </body>
 </body>
-
-<!-- changes pen color to color from color picker when color is selected. It then removes focus on the button after the input is submitted -->
 <script>
 $("#p_color").on('input', function(){
 	pcolor = $(this).val();
