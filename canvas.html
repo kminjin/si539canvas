@@ -16,41 +16,41 @@
 </head>
 <body>
 	<canvas id="canvas">Blank canvas for drawing art. Try switching browser if it does not render.</canvas>
-<script>
-	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext('2d');
-	var x = 0;
-	var y = 0;
-	var psize = 10;
-	var pcolor = "red";
-	var w = window.innerWidth * 0.8;
-	var h = window.innerHeight * 0.8;
-	window.addEventListener('load', function() {
-	init();
-	})
-	function init() {
-		canvas.width = w;
-    canvas.height = h;
-	};
- 	function newCanvas() {
- 	    location.reload();
-        }
-	function draw(){
-		ctx.beginPath();
-		ctx.arc(x,y,psize,0,2*Math.PI);
-    ctx.fillStyle = pcolor;
-		ctx.fill();
-	}
-	window.addEventListener('mousemove', function (e) {
-		x = e.pageX;
-		y = e.pageY;
-		draw()
-	})
-	window.addEventListener('touchmove', function(e){
- 		x = e.touches[0].pageX;
-  	y = e.touches[0].pageY;
-  	draw();
-	});
+  <script>
+	   var canvas = document.getElementById("canvas");
+	   var ctx = canvas.getContext('2d');
+	   var x = 0;
+	   var y = 0;
+	   var psize = 10;
+	   var pcolor = "red";
+	   var w = window.innerWidth * 0.8;
+	   var h = window.innerHeight * 0.8;
+     window.addEventListener('load', function() {
+	      init();
+	   })
+     function init() {
+       canvas.width = w;
+       canvas.height = h;
+	   };
+ 	   function newCanvas() {
+       location.reload();
+     }
+     function draw(){
+       ctx.beginPath();
+       ctx.arc(x,y,psize,0,2*Math.PI);
+       ctx.fillStyle = pcolor;
+       ctx.fill();
+     }
+     window.addEventListener('mousemove', function (e) {
+       x = e.pageX;
+       y = e.pageY;
+       draw()
+     });
+     window.addEventListener('touchmove', function(e){
+       x = e.touches[0].pageX;
+       y = e.touches[0].pageY;
+       draw();
+     });
 	window.addEventListener("orientationchange", function() {
 		newCanvas();
 	});
