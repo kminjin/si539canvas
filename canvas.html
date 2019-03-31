@@ -15,14 +15,17 @@
 
 </head>
 <body>
+<!-- set up container to draw graphics using javsascript can be animated, interactive -->
 	<canvas id="canvas">Blank canvas for drawing art. Try switching browser if it does not render.</canvas>
   <script>
 //a browser rungs javascript line by line starting at the top
 // store data so we can use it later
 // I am declaring variable canvas, ctx, etx to exist, initializing is giving a variable its value for the first time
-	   var canvas = document.getElementById("canvas");
+     var canvas = document.getElementById("canvas"); //finding canvss element
+//document.getElementById is a method
 // making canvas into a 2d object
-	   var ctx = canvas.getContext('2d');
+// remember == is equality but = is assigning
+	   var ctx = canvas.getContext('2d');//creating a drawing object
 	   var x = 0;
 	   var y = 0;
 	   var psize = 10;
@@ -39,12 +42,14 @@
  	   function newCanvas() {
        location.reload();
      }
-     function draw(){
+     function draw(){ //drawing on canvas
        ctx.beginPath();
        ctx.arc(x,y,psize,0,2*Math.PI);
        ctx.fillStyle = pcolor;
        ctx.fill();
      }
+
+// events are things that "happen" to HTML e.g. mouse click, key stroke, etc
      window.addEventListener('mousemove', function (e) {
        x = e.pageX;
        y = e.pageY;
@@ -62,8 +67,9 @@
        newCanvas();
      });
      window.addEventListener('keyup', function (e) {
-       // consoles are great because it gives you instant feedback
+       // consoles are great because it gives you instant feedback and it is a method
        console.log(e.keyCode);
+       // == means equality
        if (e.keyCode == 66){
          pcolor = "blue"
        }
